@@ -1,15 +1,11 @@
 from django.db import models
+from .gênero import Gênero
 
-class Gênero(models.Model):
-    descrição = models.CharField(max_length=100)
-    def __str__(self):
-        return self.descrição
-
-# Create your models here.
 class Filme(models.Model):
     título = models.CharField(max_length=100)
     descrição = models.TextField()
     diretor = models.CharField(max_length=100)
+    gênero = models.ForeignKey(Gênero, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.título
